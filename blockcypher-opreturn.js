@@ -81,7 +81,7 @@ const url_addr      = `https://${url_base}/${endpoint_addr}`;
       })
   })
 
-  op_returns = tx_outs.filter((output) => {
+  let op_returns = tx_outs.filter((output) => {
       return output.script_type == "null-data"
   }).map((output) => {
       if (DEBUG) c.log(`output: ${JSON.stringify(output)}`)
@@ -98,7 +98,11 @@ const url_addr      = `https://${url_base}/${endpoint_addr}`;
   let fileContents = JSON.stringify({
     op_returns: op_returns
   })
-  fs.writeFileSync("op_returns.json", fileContents)
+  c.log("--------------------------------------")
+  c.log(fileContents)
+  c.log("--------------------------------------")
+  fs.writeFileSync("./op_returns.json", fileContents, 'utf8')
+  // fs.writeFileSync("/home/makevoid/apps/pbd/chapter_06/blockchain_contract/op_returns.json", fileContents, 'utf8')
 
 
   module.exports = op_returns
